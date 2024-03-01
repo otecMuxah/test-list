@@ -33,14 +33,9 @@ export class AppComponent {
     alert(item.Operator);
   }
 
-  filter(event?: keyof Tariff) {
-    this.tariffs$ = this.tariffsService.getData().pipe(
-      map((el) => {
-        if (!event) return el;
-        return el.sort((prev, next) =>
-          prev[event].toString().localeCompare(next[event].toString())
-        );
-      }),
+  filter(event: keyof Tariff | undefined) {
+    if (!event) return;
+    this.tariffs$ = this.tariffsService.filter(event).pipe(
       tap(() => this.cdr.detectChanges())
     );
   }

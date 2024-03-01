@@ -15,7 +15,8 @@ import { Tariff } from '../tariff.service';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   template: `
-  Sort by:
+  <div class="flex">
+  <span>Sort by:</span>
     <form [formGroup]="form">
       <select formControlName="sort">
         <option value="">--Sort By--</option>
@@ -27,6 +28,8 @@ import { Tariff } from '../tariff.service';
         </option>
       </select>
     </form>
+  </div>
+
   `,
   styleUrl: './sorter.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
