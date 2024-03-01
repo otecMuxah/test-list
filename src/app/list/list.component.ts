@@ -13,16 +13,19 @@ import {
   imports: [CommonModule],
   template: `
     <ul class="grid gap-6 md:grid-cols-2">
-      <li *ngFor="let item of items">
+      @for (item of items; track item) {
+      <li>
+        @if (itemTemplateRef) {
         <ng-container
-          *ngIf="itemTemplateRef"
           [ngTemplateOutlet]="itemTemplateRef"
           [ngTemplateOutletContext]="{
             $implicit: item
           }"
         >
         </ng-container>
+        }
       </li>
+      }
     </ul>
   `,
   styleUrl: './list.component.css',

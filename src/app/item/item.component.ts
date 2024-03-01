@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -11,7 +10,7 @@ import { Tariff } from '../tariff.service';
 @Component({
   selector: 'app-item',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './item.component.html',
   styleUrl: './item.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

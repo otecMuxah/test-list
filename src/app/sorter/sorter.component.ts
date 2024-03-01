@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -11,15 +10,17 @@ import { map } from 'rxjs';
 @Component({
   selector: 'app-sorter',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [ReactiveFormsModule],
   template: `
     <div class="flex">
       <span>Sort by:</span>
       <form [formGroup]="form">
         <select formControlName="sort">
-          <option *ngFor="let option of options" [value]="option">
+          @for (option of options; track option) {
+          <option [value]="option">
             {{ option }}
           </option>
+          }
         </select>
       </form>
     </div>

@@ -42,7 +42,7 @@ export class AppComponent {
   filter(event: keyof Tariff | undefined) {
     if (!event) {
       this.tariffs$ = this.tariffsService.tariffs$;
-      return
+      return;
     }
     this.tariffs$ = this.tariffsService
       .filter(event)
