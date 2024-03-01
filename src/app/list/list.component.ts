@@ -1,5 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ContentChild, Input, TemplateRef } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ContentChild,
+  Input,
+  TemplateRef,
+} from '@angular/core';
 
 @Component({
   selector: 'app-list',
@@ -7,9 +13,7 @@ import { ChangeDetectionStrategy, Component, ContentChild, Input, TemplateRef } 
   imports: [CommonModule],
   template: `
     <ul class="grid gap-6 md:grid-cols-2">
-      <li
-        *ngFor="let item of items"
-      >
+      <li *ngFor="let item of items">
         <ng-container
           *ngIf="itemTemplateRef"
           [ngTemplateOutlet]="itemTemplateRef"
@@ -26,6 +30,7 @@ import { ChangeDetectionStrategy, Component, ContentChild, Input, TemplateRef } 
 })
 export class ListComponent<T> {
   @Input() items: T[] = [];
-  @ContentChild('item', { read: TemplateRef })
-  itemTemplateRef: TemplateRef<{$implicit: T}> | undefined;
+  @ContentChild('item', { read: TemplateRef }) itemTemplateRef:
+    | TemplateRef<{ $implicit: T }>
+    | undefined;
 }

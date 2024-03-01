@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, map, of, tap } from 'rxjs';
+import { Observable, map, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +12,7 @@ export class TariffService {
     return this.tariffs$;
   }
 
-  filter(term: keyof Tariff) {
+  filter(term: keyof Tariff): Observable<Tariff[]> {
     return this.tariffs$.pipe(
       map((el) => {
         if (!term) return el;
@@ -23,7 +23,7 @@ export class TariffService {
             );
           case 'Speed_Mbps':
             return el.sort((prev, next) => {
-              return Number(prev.Speed_Mbps) - Number(next.Speed_Mbps)
+              return Number(prev.Speed_Mbps) - Number(next.Speed_Mbps);
             });
           default:
             return el.sort((prev, next) =>

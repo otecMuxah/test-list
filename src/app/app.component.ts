@@ -1,4 +1,9 @@
-import { ChangeDetectorRef, Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  inject,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { ListComponent } from './list/list.component';
@@ -19,6 +24,7 @@ import { Observable, map, tap } from 'rxjs';
     ItemComponent,
     SorterComponent,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   tariffsService = inject(TariffService);
@@ -34,9 +40,12 @@ export class AppComponent {
   }
 
   filter(event: keyof Tariff | undefined) {
-    if (!event) return;
-    this.tariffs$ = this.tariffsService.filter(event).pipe(
-      tap(() => this.cdr.detectChanges())
-    );
+    if (!event) {
+      this.tariffs$ = this.tariffsService.tariffs$;
+      return
+    }
+    this.tariffs$ = this.tariffsService
+      .filter(event)
+      .pipe(tap(() => this.cdr.detectChanges()));
   }
 }

@@ -1,8 +1,11 @@
 <div class="w-full p-4">
-  <app-sorter [options]="(tariffsOptions$ | async) || []" (select)="filter($event)"></app-sorter>
+  <app-sorter
+    [options]="(tariffsOptions$ | async) || []"
+    (select)="filter($event)"
+  ></app-sorter>
   <app-list [items]="(tariffs$ | async) || []">
     <ng-template #item let-tariff>
-      <app-item [item]="tariff" (select)="tariffSelect($event)"></app-item>
+      <app-item [tariff]="tariff" (select)="tariffSelect($event)"></app-item>
     </ng-template>
   </app-list>
 </div>
